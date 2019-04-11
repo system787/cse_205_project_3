@@ -10,6 +10,7 @@
 //**************************************************************************************************
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -20,17 +21,20 @@ public class Main {
     /**
      * The Roster of students that is read from the input file "gradebook.dat".
      */
-    ???
+    private Roster mRoster;
 
     /**
      * A reference to the View object.
      */
-    ???
+    private View mView;
 
     /**
      * This is where execution starts. Instantiate a Main object and then call run().
      */
-    ???
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
 
     /**
      * exit() is called when the Exit button in the View is clicked. When we exit we have to write
@@ -54,17 +58,28 @@ public class Main {
      *     end try-catch
      * end exit
      */
-    ???
+    //???
 
     /**
      * This method returns the number of exams in the class.
      */
-    ???
+    //???
 
     /**
      * This method returns the number of homework assignments in the class.
      */
-    ???
+    private int getHomeworkAssignments() {
+        ArrayList<Student> studentList = mRoster.getStudentList();
+
+        int assignmentCount = 0;
+
+        for (Student s : studentList) {
+
+        }
+
+
+        return 0;
+    }
     
     /**
      * Accessor method for mRoster.
@@ -105,7 +120,9 @@ public class Main {
      *     end try-catch
      * end run
      */
-    ???
+    public void run() {
+
+    }
 
     /**
      * search() is called when the Search button is clicked in the View. The input parameter is
@@ -120,7 +137,7 @@ public class Main {
      *     call getRoster().getStudent(pLastName) and return what getStudent() returns
      * end search
      */
-    ???
+    //???
 
     /**
      * Mutator method for mRoster.
