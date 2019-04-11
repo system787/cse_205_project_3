@@ -25,27 +25,27 @@ public class Student implements Comparable<Student> {
      * mCurrStudent is a reference to the Student object which is currently being displayed and
      * edited in the View. It should only be accessed via accessor/mutator methods.
      */
-    ???
+    private static Student mCurrStudent;
 
     /**
      * mExamList is an ArrayList of Integers storing the student's exam scores.
      */
-    ???
+    private ArrayList<Integer> mExamList;
     
     /**
      * The student's first name.
      */
-    ???
+    private String mFirstName;
 
     /**
      * mHomework List is an ArrayList of Integers storing the student's homework scores.
      */
-    ???
+    private ArrayList<Integer> mHomeworkList;
 
     /**
      * The student's last name.
      */
-    ???
+    private String mLastName;
 
     /**
      * Student()
@@ -59,7 +59,13 @@ public class Student implements Comparable<Student> {
      *     create an ArrayList<Integer> and pass it off to setHomeworkList()
      * end Student()
      */
-    ???
+    public Student(String pFirstName, String pLastName) {
+        setFirstName(pFirstName);
+        setLastName(pLastName);
+
+        setExamList(new ArrayList<Integer>());
+        setHomeworkList(new ArrayList<Integer>());
+    }
 
     /**
      * addExam()
@@ -73,7 +79,9 @@ public class Student implements Comparable<Student> {
      *     call add(pScore) on getExamList() to add a new exam score to the list of exam scores.
      * end addExam
      */
-    ???
+    private void addExam(int pScore) {
+        this.getExamList().add(pScore);
+    }
 
     /**
      * addHomework()
@@ -88,7 +96,9 @@ public class Student implements Comparable<Student> {
      *     homework scores
      * end addHomework
      */
-    ???
+    private void addHomework(int pScore) {
+
+    }
 
     /**
      * compareTo()
@@ -110,8 +120,12 @@ public class Student implements Comparable<Student> {
      *     hint: the last names are Strings and String already implements compareTo().
      * end compareTo
      */
-    ???
-    
+    @Override
+    public int compareTo(Student pStudent) {
+
+        return this.getLastName().compareTo(pStudent.getLastName());
+    }
+
     /**
      * Accessor method for mCurrStudent.
      */ 
@@ -155,7 +169,13 @@ public class Student implements Comparable<Student> {
      *
      * Returns the student's full name in the format: "lastname, firstname".
      */
-    ???
+    public String getFullName() {
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(this.getLastName()).append(", ").append(this.getFirstName());
+
+        return sb.toString();
+    }
     
     /**
      * getHomework()
@@ -269,5 +289,20 @@ public class Student implements Comparable<Student> {
      *
      * Hint: use enhanced for loops
      */
-    ???
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append(this.mLastName).append(" ").append(this.mFirstName).append(" ");
+
+        for (Integer i : this.getExamList()) {
+            sb.append(i).append(" ");
+        }
+
+        for (Integer i : this.getHomeworkList()) {
+            sb.append(i).append(" ");
+        }
+
+        return sb.toString().trim();
+    }
 }
