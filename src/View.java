@@ -245,8 +245,8 @@ public class View extends JFrame implements ActionListener {
         } else if (e.getActionCommand().equals("Exit")) {
             if (Student.getCurrStudent() != null) {
                 saveStudent(Student.getCurrStudent());
-                getMain().exit();
             }
+            getMain().exit();
         }
     }
     /**
