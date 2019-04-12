@@ -1,12 +1,11 @@
 //**************************************************************************************************
-// CLASS: Main
+// CLASS: Main (Main.java)
 //
-// AUTHOR
-// Kevin R. Burger (burgerk@asu.edu)
-// Computer Science & Engineering Program
-// Fulton Schools of Engineering
-// Arizona State University, Tempe, AZ 85287-8809
-// (c) Kevin R. Burger 2014-2019
+// COURSE AND PROJECT INFO
+// CSE205 Object Oriented Programming and Data Structures, Spring B 2019
+// Project Number: 3
+//
+// AUTHOR: Vincent Hoang, vnhoang, vnhoang@asu.edu
 //**************************************************************************************************
 
 import java.io.FileNotFoundException;

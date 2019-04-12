@@ -1,3 +1,13 @@
+//**************************************************************************************************
+// CLASS: Sorter (Sorter.java)
+//
+// COURSE AND PROJECT INFO
+// CSE205 Object Oriented Programming and Data Structures, Spring B 2019
+// Project Number: 3
+//
+// AUTHOR: Vincent Hoang, vnhoang, vnhoang@asu.edu
+//**************************************************************************************************
+
 import java.util.ArrayList;
 
 public class Sorter {
