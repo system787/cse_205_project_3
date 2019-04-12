@@ -100,7 +100,8 @@ public class View extends JFrame implements ActionListener {
         mHomeworkText = new JTextField[Main.getNumHomeworks()];
 
         for (int i = 0; i < mHomeworkText.length; i++) {
-            mHomeworkText[i].add(new JTextField(5));
+            mHomeworkText[i] = new JTextField(5);
+            panelHomework.add(mHomeworkText[i]);
         }
 
         // Create the exam panel which contains the "Exam: " label and the two exam text fields.
@@ -112,7 +113,8 @@ public class View extends JFrame implements ActionListener {
         mExamText = new JTextField[Main.getNumExams()];
 
         for (int i = 0; i < mExamText.length; i++) {
-            mExamText[i].add(new JTextField(5));
+            mExamText[i] = new JTextField(5);
+            panelExam.add(mExamText[i]);
         }
 
         // PSEUDOCODE:
@@ -144,7 +146,7 @@ public class View extends JFrame implements ActionListener {
         // Add panelExam to panelMain
         // Add panelButtons to panelMain
         JPanel panelMain = new JPanel();
-        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.LINE_AXIS));
+        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.PAGE_AXIS));
 
         panelMain.add(panelSearch);
         panelMain.add(panelHomework);
@@ -234,19 +236,13 @@ public class View extends JFrame implements ActionListener {
                     displayStudent(Student.getCurrStudent());
                 }
             }
-        }
-
-        if (e.getActionCommand().equals("Save")) {
+        } else if (e.getActionCommand().equals("Save")) {
             if (Student.getCurrStudent() != null) {
                 saveStudent(Student.getCurrStudent());
             }
-        }
-
-        if (e.getActionCommand().equals("Clear")) {
+        } else if (e.getActionCommand().equals("Clear")) {
             clear();
-        }
-
-        if (e.getActionCommand().equals("Exit")) {
+        } else if (e.getActionCommand().equals("Exit")) {
             if (Student.getCurrStudent() != null) {
                 saveStudent(Student.getCurrStudent());
                 getMain().exit();

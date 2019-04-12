@@ -15,8 +15,9 @@ public class Sorter {
         int leftIndex = start - 1;
         int rightIndex = end + 1;
 
-        while (leftIndex > rightIndex) {
+        while (leftIndex < rightIndex) {
             leftIndex++;
+
             while (pList.get(leftIndex).compareTo(pivot) < 0) {
                 leftIndex++;
             }
