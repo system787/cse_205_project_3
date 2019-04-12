@@ -182,6 +182,7 @@ public class Student implements Comparable<Student> {
      *
      * Accessor method to retrieve a homework score from the list of homeworks.
      *
+     *
      * @param pNum The homework number for which we wish to retrieve the score.
      *
      * @return The homework score.
