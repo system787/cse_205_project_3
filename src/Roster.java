@@ -48,7 +48,7 @@ public class Roster {
      *     add (will append) pStudent to mStudentList
      * end method
      */
-    private void addStudent(Student pStudent) {
+    public void addStudent(Student pStudent) {
         mStudentList.add(pStudent);
     }
 
@@ -68,8 +68,14 @@ public class Roster {
      *     else return the Student object in getStudentList() at index 'index'
      * end getStudent
      */
-    private Student getStudent(String pLastName) {
+    public Student getStudent(String pLastName) {
+        int index = Searcher.search(getStudentList(), pLastName);
 
+        if (index == -1) {
+            return null;
+        } else {
+            return getStudentList().get(index);
+        }
     }
 
     /**
@@ -94,7 +100,7 @@ public class Roster {
      *
      * Mutator method for mStudentList.
      */
-    private void setStudentList(ArrayList<Student> pStudentList) {
+    public void setStudentList(ArrayList<Student> pStudentList) {
         mStudentList = pStudentList;
     }
 
@@ -109,7 +115,9 @@ public class Roster {
      *     call Sorter.sort() passing the list of students returned from getStudentList()
      * end sortRoster
      */
-    ???
+    public void sortRoster() {
+        Sorter.sort(getStudentList());
+    }
 
     /**
      * Returns a String representation of this Roster. toString() methods are very handy for
