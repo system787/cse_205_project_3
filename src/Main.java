@@ -29,6 +29,11 @@ public class Main {
     private View mView;
 
     /**
+     * Class constant for filename
+     */
+    private final String FILENAME = "gradebook.dat";
+
+    /**
      * This is where execution starts. Instantiate a Main object and then call run().
      */
     public static void main(String[] args) {
@@ -58,27 +63,29 @@ public class Main {
      *     end try-catch
      * end exit
      */
-    //???
+    private void exit() {
+        try {
+            GradebookWriter gbWriter = new GradebookWriter(FILENAME);
+            gbWriter.writeGradebook(getRoster());
+            System.exit(0);
+        } catch (FileNotFoundException e) {
+            getView().messageBox("Could not open " + FILENAME + " for writing. Exiting without saving.");
+            System.exit(-1);
+        }
+    }
 
     /**
      * This method returns the number of exams in the class.
      */
-    //???
+    public static int getNumExams() {
+        return 3;
+    }
 
     /**
      * This method returns the number of homework assignments in the class.
      */
-    private int getHomeworkAssignments() {
-        ArrayList<Student> studentList = mRoster.getStudentList();
-
-        int assignmentCount = 0;
-
-        for (Student s : studentList) {
-
-        }
-
-
-        return 0;
+    public static int getHomeworkAssignments() {
+        return 5;
     }
     
     /**
@@ -121,7 +128,16 @@ public class Main {
      * end run
      */
     public void run() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        setView(new View(this));
 
+        try {
+            GradebookReader gbReader = new GradebookReader(FILENAME);
+            setRoster(gbReader.readGradebook());
+        } catch (FileNotFoundException e) {
+            getView().messageBox("Could not open " + FILENAME + " for reading. Exiting.");
+            System.exit(-1);
+        }
     }
 
     /**
@@ -137,7 +153,9 @@ public class Main {
      *     call getRoster().getStudent(pLastName) and return what getStudent() returns
      * end search
      */
-    //???
+    private Student search(String pLastName) {
+        return getRoster().getStudent(pLastName);
+    }
 
     /**
      * Mutator method for mRoster.
