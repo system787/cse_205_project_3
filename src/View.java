@@ -9,15 +9,10 @@
 // (c) Kevin R. Burger 2014-2019
 //**************************************************************************************************
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  * The View class implements the GUI. It is a subclass of JFrame and implements the ActionListener
@@ -28,12 +23,12 @@ public class View extends JFrame implements ActionListener {
     /**
      * The width of the View frame. Define a private class constant.
      */
-    private static final int VIEW_WIDTH = 525;
+    private static final int FRAME_WIDTH = 525;
 
     /**
      * The height of the View frame. Define a private class constant.
      */
-    private static final int VIEW_HEIGHT = 225;
+    private static final int FRAME_HEIGHT = 225;
     
     /**
      * When the View() ctor is called from Main.run() to create the View, run() passes a reference
@@ -48,8 +43,15 @@ public class View extends JFrame implements ActionListener {
     /**
      * Declare GUI related instance variables for the buttons and text fields.
      */
-    // ???
-    
+    private JButton mClearButton;
+    private JButton mExitButton;
+    private JButton mSaveButton;
+    private JButton mSearchButton;
+
+    private JTextField[] mExamText;
+    private JTextField[] mHomeworkText;
+    private JTextField mStudentName;
+
     /**
      * View()
      *
@@ -73,7 +75,16 @@ public class View extends JFrame implements ActionListener {
         // Create mSearchButton with the label "Search"
         // Make this View the action listener for the button
         // Add the button to the panel
-        ???
+        JPanel panelSearch = new JPanel(new FlowLayout());
+        panelSearch.add(new JLabel("Student Name: "));
+
+        mStudentName = new JTextField(25);
+        panelSearch.add(mStudentName);
+
+        mSearchButton = new JButton("Search");
+        mSearchButton.addActionListener(this);
+        panelSearch.add(mSearchButton);
+
 
         // PSEUDOCODE:
         // Create a JPanel named panelHomework which uses the FlowLayout
@@ -84,13 +95,25 @@ public class View extends JFrame implements ActionListener {
         //     Add mHomeworkText[i] to the panel
         // End For
         // Note: DO NOT HARDCODE THE NUMBER OF HOMEWORK ASSIGNMENTS
-        ???
+        JPanel panelHomework = new JPanel(new FlowLayout());
+        panelHomework.add(new JLabel("Homework: "));
+        mHomeworkText = new JTextField[Main.getNumHomeworks()];
+
+        for (int i = 0; i < mHomeworkText.length; i++) {
+            mHomeworkText[i].add(new JTextField(5));
+        }
 
         // Create the exam panel which contains the "Exam: " label and the two exam text fields.
         // The pseudocode is omitted because this code is very similar to the code that creates the
         // panelHomework panel above.
         // Note: DO NOT HARDCODE THE NUMBER OF EXAMS
-        ???
+        JPanel panelExam = new JPanel(new FlowLayout());
+        panelExam.add(new JLabel("Exam: "));
+        mExamText = new JTextField[Main.getNumExams()];
+
+        for (int i = 0; i < mExamText.length; i++) {
+            mExamText[i].add(new JTextField(5));
+        }
 
         // PSEUDOCODE:
         // Create a JPanel named panelButtons using FlowLayout
@@ -99,7 +122,20 @@ public class View extends JFrame implements ActionListener {
         // Add the  Clear button to the panel
         // Repeat the three above statements for the Save button
         // Repeat the three above statements for the Exit button
-        ???
+        JPanel panelButtons = new JPanel(new FlowLayout());
+
+        mClearButton = new JButton("Clear");
+        mClearButton.addActionListener(this);
+        panelButtons.add(mClearButton);
+
+        mSaveButton = new JButton("Save");
+        mSaveButton.addActionListener(this);
+        panelButtons.add(mSaveButton);
+
+        mExitButton = new JButton("Exit");
+        mExitButton.addActionListener(this);
+        panelButtons.add(mExitButton);
+
         
         // PSEUDOCODE:
         // Create a JPanel named panelMain using a vertical BoxLayout
@@ -107,10 +143,16 @@ public class View extends JFrame implements ActionListener {
         // Add panelHomework to panelMain
         // Add panelExam to panelMain
         // Add panelButtons to panelMain
-        ???
+        JPanel panelMain = new JPanel();
+        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.LINE_AXIS));
+
+        panelMain.add(panelSearch);
+        panelMain.add(panelHomework);
+        panelMain.add(panelExam);
+        panelMain.add(panelButtons);
 
         // Set the title of the View to whatever you want by calling setTitle()
-        ???
+        setTitle("Gred :: Gradebook Editor");
         
         // Set the size of the View to FRAME_WIDTH x FRAME_HEIGHT
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -122,7 +164,7 @@ public class View extends JFrame implements ActionListener {
         // button in the title bar of the View so now the only way to exit the program is by click-
         // ing the Exit button. This ensures that Main.exit() will be called so it will write the
         // student records back out to the gradebook database.
-        ???
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         // Add panelMain to the View.
         add(panelMain);
@@ -130,7 +172,7 @@ public class View extends JFrame implements ActionListener {
         // If you are a Mac user, you may need to call the pack() method which is inherited from
         // java.awt.Window() now to pack the View before displaying it. Windows and Linux users do
         // not need to do this, although if you do, it will not cause any problems.
-        // ???
+        pack();
 
         // Now display the View by calling setVisible().
         setVisible(true);
@@ -176,8 +218,41 @@ public class View extends JFrame implements ActionListener {
      * End If
      * end actionPerformed
      */
-    ???
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Search")) {
+            clearNumbers();
+            String lastName = mStudentName.getText();
+            if (lastName.length() == 0) {
+                messageBox("Please enter the student's last name.");
+            } else {
+                Student.setCurrStudent(getMain().search(lastName));
 
+                if (Student.getCurrStudent() == null) {
+                    messageBox("Student not found. Try again.");
+                } else {
+                    displayStudent(Student.getCurrStudent());
+                }
+            }
+        }
+
+        if (e.getActionCommand().equals("Save")) {
+            if (Student.getCurrStudent() != null) {
+                saveStudent(Student.getCurrStudent());
+            }
+        }
+
+        if (e.getActionCommand().equals("Clear")) {
+            clear();
+        }
+
+        if (e.getActionCommand().equals("Exit")) {
+            if (Student.getCurrStudent() != null) {
+                saveStudent(Student.getCurrStudent());
+                getMain().exit();
+            }
+        }
+    }
     /**
      * clear()
      *
@@ -194,7 +269,11 @@ public class View extends JFrame implements ActionListener {
      *     Set the current Student object in the Student class to null
      * end clear
      */
-    ???
+    private void clear() {
+        mStudentName.setText("");
+        clearNumbers();
+        Student.setCurrStudent(null);
+    }
 
     /**
      * clearNumbers()
@@ -203,8 +282,16 @@ public class View extends JFrame implements ActionListener {
      *
      * DO NOT HARCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
-    ???
-    
+    private void clearNumbers() {
+        for (JTextField jtf : mHomeworkText) {
+            jtf.setText("");
+        }
+
+        for (JTextField jtf : mExamText) {
+            jtf.setText("");
+        }
+    }
+
     /**
      * displayStudent()
      *
@@ -225,7 +312,19 @@ public class View extends JFrame implements ActionListener {
      *
      * DO NOT HARCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
-    ???
+    private void displayStudent(Student pStudent) {
+        for (int i = 0; i < Main.getNumHomeworks(); i++) {
+            int hw = pStudent.getHomework(i);
+            String hwString = String.valueOf(hw);
+            mHomeworkText[i].setText(hwString);
+        }
+
+        for (int i = 0; i < Main.getNumExams(); i++) {
+            int exam = pStudent.getExam(i);
+            String examString = String.valueOf(exam);
+            mExamText[i].setText(examString);
+        }
+    }
 
     /**
      * Accessor method for mMain.
@@ -248,7 +347,9 @@ public class View extends JFrame implements ActionListener {
      *     Call JOptionPane.showMessageDialog() to display pMessage.
      * end messageBox
      */
-    ???
+    public void messageBox(String pMessage) {
+        JOptionPane.showMessageDialog(this, pMessage);
+    }
 
     /**
      * saveStudent()
@@ -268,7 +369,19 @@ public class View extends JFrame implements ActionListener {
      *
      * DO NOT HARDCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
-    ???
+    private void saveStudent(Student pStudent) {
+        for (int i = 0; i < Main.getNumHomeworks(); i++) {
+            String hwString = mHomeworkText[i].getText();
+            int hw = Integer.parseInt(hwString);
+            pStudent.setHomework(i, hw);
+        }
+
+        for (int i = 0; i < Main.getNumExams(); i++) {
+            String examString = mExamText[i].getText();
+            int exam = Integer.parseInt(examString);
+            pStudent.setExam(i, exam);
+        }
+    }
     
     /**
      * Mutator method for mMain.

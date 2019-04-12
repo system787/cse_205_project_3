@@ -63,7 +63,7 @@ public class Main {
      *     end try-catch
      * end exit
      */
-    private void exit() {
+    public void exit() {
         try {
             GradebookWriter gbWriter = new GradebookWriter(FILENAME);
             gbWriter.writeGradebook(getRoster());
@@ -84,7 +84,7 @@ public class Main {
     /**
      * This method returns the number of homework assignments in the class.
      */
-    public static int getHomeworkAssignments() {
+    public static int getNumHomeworks() {
         return 5;
     }
     
@@ -153,7 +153,7 @@ public class Main {
      *     call getRoster().getStudent(pLastName) and return what getStudent() returns
      * end search
      */
-    private Student search(String pLastName) {
+    public Student search(String pLastName) {
         return getRoster().getStudent(pLastName);
     }
 

@@ -79,7 +79,7 @@ public class Student implements Comparable<Student> {
      *     call add(pScore) on getExamList() to add a new exam score to the list of exam scores.
      * end addExam
      */
-    private void addExam(int pScore) {
+    public void addExam(int pScore) {
         this.getExamList().add(pScore);
     }
 
@@ -96,8 +96,8 @@ public class Student implements Comparable<Student> {
      *     homework scores
      * end addHomework
      */
-    private void addHomework(int pScore) {
-
+    public void addHomework(int pScore) {
+        getHomeworkList().add(pScore);
     }
 
     /**

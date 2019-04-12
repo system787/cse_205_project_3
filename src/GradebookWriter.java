@@ -26,7 +26,9 @@ public class GradebookWriter extends PrintWriter {
      *
      * @param pFname The name of the output file to be opened for writing.
      */
-    ???
+    public GradebookWriter(String pFname) throws FileNotFoundException {
+        super(pFname);
+    }
 
     /**
      * Writes the gradebook info to the output file which was opened in the ctor.
@@ -41,5 +43,11 @@ public class GradebookWriter extends PrintWriter {
      *     Call close()
      * end writeGradebook
      */
-    ???
+    public void writeGradebook(Roster pRoster) {
+        for (Student s : pRoster.getStudentList()) {
+            println(s);
+        }
+        flush();
+        close();
+    }
 }
