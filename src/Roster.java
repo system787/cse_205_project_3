@@ -23,14 +23,14 @@ public class Roster {
 
     /**
      * Roster()
-     *
+     * <p>
      * PSEUDOCODE:
      * method Roster()
-     *     -- Note that mStudentList was already declared so we do not need to declare it here.
-     *     -- What we need to do here is create the ArrayList<Student> object that mStudentList
-     *     -- will refer to.
-     *     create an ArrayList<Student> object and then pass that object as the argument to
-     *     setStudentList() to make mStudentList refer to the ArrayList
+     * -- Note that mStudentList was already declared so we do not need to declare it here.
+     * -- What we need to do here is create the ArrayList<Student> object that mStudentList
+     * -- will refer to.
+     * create an ArrayList<Student> object and then pass that object as the argument to
+     * setStudentList() to make mStudentList refer to the ArrayList
      * end Roster
      */
     public Roster() {

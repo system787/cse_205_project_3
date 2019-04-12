@@ -38,16 +38,16 @@ public class Searcher {
 
     /**
      * search()
-     *
+     * <p>
      * Searches through the ArrayList of Students provided to search for last names compared against the input
      * last name via binary search
      *
      * @param pList the ArrayList of Students to search through
-     * @param pKey the last name of the student to search for
-     * @param pLow the lower bound of the search (initially 0)
+     * @param pKey  the last name of the student to search for
+     * @param pLow  the lower bound of the search (initially 0)
      * @param pHigh the upper bound of the search (initially the last element of the list, or list.size() - 1)
      * @return If the key was found, the index of the found element is returned. If the key was not found,
-     *         -1 is returned.
+     * -1 is returned.
      */
     public static int search(ArrayList<Student> pList, String pKey, int pLow, int pHigh) {
         if (pLow > pHigh) {
@@ -71,14 +71,14 @@ public class Searcher {
 
     /**
      * search()
-     *
+     * <p>
      * Overloaded method declaration so that the search can be initiated with only the ArrayList and search key
      * as the parameters
      *
      * @param pList the ArrayList of Students to search through
-     * @param pKey the last name of the student to search for
+     * @param pKey  the last name of the student to search for
      * @return If the key was found, the index of the found element is returned. If the key was not found,
-     *         -1 is returned.
+     * -1 is returned.
      */
     public static int search(ArrayList<Student> pList, String pKey) {
         return search(pList, pKey, 0, pList.size() - 1);

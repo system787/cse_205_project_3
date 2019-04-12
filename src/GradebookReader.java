@@ -17,7 +17,7 @@ import java.util.Scanner;
  * Once the input file has been read, it will return a Roster object containing the list of
  * Students in the course.
  */
-public class GradebookReader  {
+public class GradebookReader {
 
     /**
      * mIn is used to read from the input file.
@@ -27,14 +27,13 @@ public class GradebookReader  {
     /**
      * Attempts to open the gradebook file for reading. If successful, mIn will be used to read
      * from the file. If the file cannot be opened, a FileNotFoundException will be thrown.
-     *
+     * <p>
      * Note that this  method does not actually read the information from the file. That is done
      * lated when readRoster() is called from Main.run().
      *
-     * @throws FileNotFoundException
-     *
      * @param pFname The name of the file to be opened for reading. For this project it will be
      *               "gradebook.dat"
+     * @throws FileNotFoundException
      */
     public GradebookReader(String pFname) throws FileNotFoundException {
         mIn = new Scanner(new File(pFname));
@@ -42,7 +41,7 @@ public class GradebookReader  {
 
     /**
      * Reads the exam scores for a Student.
-     *
+     * <p>
      * The number of exams is retrieved by calling the static getNumExams() method in Main.
      *
      * @param pStudent The student for whom we are going to read the exam scores from the input
@@ -57,7 +56,7 @@ public class GradebookReader  {
     /**
      * Called to read the gradebook information. Calls readRoster() to read the student records and
      * then sorts the roster by last name.
-     *
+     * <p>
      * Called from Main.run().
      *
      * @return The roster of students that was read from the input file.
@@ -70,7 +69,7 @@ public class GradebookReader  {
 
     /**
      * Reads the homework scores for a Student.
-     *
+     * <p>
      * The number of homework assignments is retrieved by calling the static getNumHomeworks()
      * method in Main.
      *
@@ -86,7 +85,7 @@ public class GradebookReader  {
     /**
      * Reads the student information for each student in the input file, adding each student to
      * the roster.
-     *
+     * <p>
      * Called from readGradebook().
      *
      * @return The roster of students that was read from the input file.

@@ -28,12 +28,12 @@ public class View extends JFrame implements ActionListener {
      * The height of the View frame. Define a private class constant.
      */
     private static final int FRAME_HEIGHT = 225;
-    
+
     /**
      * When the View() ctor is called from Main.run() to create the View, run() passes a reference
      * to the Main object as the argument to View(). We save that reference into mMain and then
      * later we can use mMain to communicate with the Main class.
-     *
+     * <p>
      * mMain is made accessible within this class via accessor/mutator methods getMain() and
      * setMain(). It shall not be directly accessed.
      */
@@ -53,11 +53,11 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * View()
-     *
+     * <p>
      * The View constructor creates the GUI interface and makes the frame visible at the end.
      *
      * @param pMain is an instance of the Main class. This links the View to the Main class so
-     * they may communicate with each other.
+     *              they may communicate with each other.
      */
     public View(Main pMain) {
 
@@ -137,7 +137,7 @@ public class View extends JFrame implements ActionListener {
         mExitButton.addActionListener(this);
         panelButtons.add(mExitButton);
 
-        
+
         // PSEUDOCODE:
         // Create a JPanel named panelMain using a vertical BoxLayout
         // Add panelSearch to panelMain.
@@ -154,22 +154,22 @@ public class View extends JFrame implements ActionListener {
 
         // Set the title of the View to whatever you want by calling setTitle()
         setTitle("Gred :: Gradebook Editor");
-        
+
         // Set the size of the View to FRAME_WIDTH x FRAME_HEIGHT
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        
+
         // Make the View non-resizable
         setResizable(false);
-        
+
         // Set the default close operation to JFrame.DO_NOTHING_ON_CLOSE. This disables the X close
         // button in the title bar of the View so now the only way to exit the program is by click-
         // ing the Exit button. This ensures that Main.exit() will be called so it will write the
         // student records back out to the gradebook database.
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
+
         // Add panelMain to the View.
         add(panelMain);
-        
+
         // If you are a Mac user, you may need to call the pack() method which is inherited from
         // java.awt.Window() now to pack the View before displaying it. Windows and Linux users do
         // not need to do this, although if you do, it will not cause any problems.
@@ -181,41 +181,41 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * actionPerformed()
-     *
+     * <p>
      * Called when one of the JButtons is clicked. Detects which button was clicked and handles it.
-     *
+     * <p>
      * Make sure to write the @Override annotation to prevent accidental overloading because we are
      * overriding JFrame.actionPerformed().
-     *
+     * <p>
      * PSEUDOCOODE:
      * method actionPerformed(pEvent : ActionEvent) : void
      * If the source of the event was the Search button Then
-     *     Clear the numbers in the homework and exam fields
-     *     lastName = retrieve the text from the mStudentName text field
-     *     If lastName is the empty string Then
-     *         Call messageBox() to display "Please enter the student's last name."
-     *     Else
-     *         -- Main contains a method named search() which given the last name of a student
-     *         -- will search the Roster for the student. search() either returns the Student
-     *         -- object if found, or if there is no student with that last name in the Roster,
-     *         -- then search() returns null.
-     *         Call getMain().search(lastName) and pass the return value to Student.setCurrStudent()
-     *         If the curr student object saved in the Student class is null Then
-     *             Call messageBox() to display "Student not found. Try again."
-     *         Else
-     *             Retrieve the curr student from the Student class and pass it to displayStudent()
-     *         End if
-     *     End If
-     *
+     * Clear the numbers in the homework and exam fields
+     * lastName = retrieve the text from the mStudentName text field
+     * If lastName is the empty string Then
+     * Call messageBox() to display "Please enter the student's last name."
+     * Else
+     * -- Main contains a method named search() which given the last name of a student
+     * -- will search the Roster for the student. search() either returns the Student
+     * -- object if found, or if there is no student with that last name in the Roster,
+     * -- then search() returns null.
+     * Call getMain().search(lastName) and pass the return value to Student.setCurrStudent()
+     * If the curr student object saved in the Student class is null Then
+     * Call messageBox() to display "Student not found. Try again."
+     * Else
+     * Retrieve the curr student from the Student class and pass it to displayStudent()
+     * End if
+     * End If
+     * <p>
      * Else if the source of the event was the Save button Then
-     *     If Student.getCurrStudent() is not null Then Call saveStudent(Student.getCurrStudent())
-     *
+     * If Student.getCurrStudent() is not null Then Call saveStudent(Student.getCurrStudent())
+     * <p>
      * Else if the source of the event was the Clear button Then
-     *     Call clear()
-     *
+     * Call clear()
+     * <p>
      * Else if the source of the event was the Exit button Then
-     *     If Student.getCurrStudent() is not null Then Call saveStudent(Student.getCurrStudent())
-     *     Call getMain().exit() to terminate the application
+     * If Student.getCurrStudent() is not null Then Call saveStudent(Student.getCurrStudent())
+     * Call getMain().exit() to terminate the application
      * End If
      * end actionPerformed
      */
@@ -248,20 +248,21 @@ public class View extends JFrame implements ActionListener {
             getMain().exit();
         }
     }
+
     /**
      * clear()
-     *
+     * <p>
      * Called when the Clear button is clicked. Clears all of the text fields by setting the
      * contents of each to the empty string.
-     *
+     * <p>
      * After clear() returns, no student information is being edited or displayed and mStudent
      * has been set to null.
-     *
+     * <p>
      * PSEUDOCODE:
      * method clear() : void
-     *     Set the mStudentName text field to ""
-     *     Clear the numbers in the homework and exam fields by calling clearNumbers()
-     *     Set the current Student object in the Student class to null
+     * Set the mStudentName text field to ""
+     * Clear the numbers in the homework and exam fields by calling clearNumbers()
+     * Set the current Student object in the Student class to null
      * end clear
      */
     private void clear() {
@@ -272,9 +273,9 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * clearNumbers()
-     *
+     * <p>
      * Clears the homework and exam fields.
-     *
+     * <p>
      * DO NOT HARCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
     private void clearNumbers() {
@@ -289,23 +290,23 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * displayStudent()
-     *
+     * <p>
      * Displays the homework and exam scores for a student in the mHomeworkText and mExamText text
      * fields.
      *
      * @param pStudent is the Student who's scores we are going to use to populate the text fields.
-     *
-     * PSEUDOCODE:
-     * method displayStudent(pStudent : Student) : void
-     *     For i = 0 to Main.getNumHomeworks - 1 Do
-     *         int hw = pStudent.getHomework(i)
-     *         String hwstr = convert hw to a String (Hint: Integer.toString())
-     *         mHomeworkText[i].setText(hwstr)
-     *     End For
-     *     Write a similar for loop to place the student's exams scores into the text fields
-     * end displayStudent
-     *
-     * DO NOT HARCODE THE NUMBER OF HOMEWORKS AND EXAMS
+     *                 <p>
+     *                 PSEUDOCODE:
+     *                 method displayStudent(pStudent : Student) : void
+     *                 For i = 0 to Main.getNumHomeworks - 1 Do
+     *                 int hw = pStudent.getHomework(i)
+     *                 String hwstr = convert hw to a String (Hint: Integer.toString())
+     *                 mHomeworkText[i].setText(hwstr)
+     *                 End For
+     *                 Write a similar for loop to place the student's exams scores into the text fields
+     *                 end displayStudent
+     *                 <p>
+     *                 DO NOT HARCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
     private void displayStudent(Student pStudent) {
         for (int i = 0; i < Main.getNumHomeworks(); i++) {
@@ -323,23 +324,23 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * Accessor method for mMain.
-     */ 
+     */
     private Main getMain() {
         return mMain;
-    }    
+    }
 
     /**
      * messageBox()
-     *
+     * <p>
      * Displays a message box containing some text. Note: read the Java 8 API page for JOptionPane
-     * to see what the constructor arguments are to showMessageDialog(). You want to pass the 
+     * to see what the constructor arguments are to showMessageDialog(). You want to pass the
      * appropriate "thing" for the first argument so your message dialog window will be centered
      * in the middle of the View frame. If your View frame is centered in the middle of your screen
      * then you did not pass the right "thing".
-     *
+     * <p>
      * PSEUDOCODE:
      * method messageBox(pMessage : String) : void
-     *     Call JOptionPane.showMessageDialog() to display pMessage.
+     * Call JOptionPane.showMessageDialog() to display pMessage.
      * end messageBox
      */
     public void messageBox(String pMessage) {
@@ -348,20 +349,20 @@ public class View extends JFrame implements ActionListener {
 
     /**
      * saveStudent()
-     *
+     * <p>
      * Retrieves the homework and exam scores for pStudent from the text fields and writes the
      * results to the Student record in the Roster.
-     *
+     * <p>
      * PSEUDOCODE:
      * method saveStudent(pStudent : Student) : void
-     *     For i = 0 to Main.getNumHomeworks - 1 Do
-     *         String hwstr = mHomeworkText[i].getText()
-     *         int hw = convert hwstr to an int (Hint: Integer.parseInt())
-     *         Call pStudent.setHomework(i, hw)
-     *     End For
-     *     Write a similar for loop to save the exam scores in pStudent
+     * For i = 0 to Main.getNumHomeworks - 1 Do
+     * String hwstr = mHomeworkText[i].getText()
+     * int hw = convert hwstr to an int (Hint: Integer.parseInt())
+     * Call pStudent.setHomework(i, hw)
+     * End For
+     * Write a similar for loop to save the exam scores in pStudent
      * end method saveStudent
-     *
+     * <p>
      * DO NOT HARDCODE THE NUMBER OF HOMEWORKS AND EXAMS
      */
     private void saveStudent(Student pStudent) {
@@ -377,12 +378,12 @@ public class View extends JFrame implements ActionListener {
             pStudent.setExam(i, exam);
         }
     }
-    
+
     /**
      * Mutator method for mMain.
-     */ 
+     */
     private void setMain(Main pMain) {
         mMain = pMain;
-    }    
+    }
 
 }

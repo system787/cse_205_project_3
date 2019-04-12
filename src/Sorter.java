@@ -18,11 +18,11 @@ public class Sorter {
 
     /**
      * swap()
-     *
+     * <p>
      * Swaps element located at pLeftIndex with the element located at pRightIndex
      *
-     * @param pList the list to perform the action on
-     * @param pLeftIndex the index of the left item to be swapped
+     * @param pList       the list to perform the action on
+     * @param pLeftIndex  the index of the left item to be swapped
      * @param pRightIndex the index of the right item to be swapped
      */
     private static void swap(ArrayList<Student> pList, int pLeftIndex, int pRightIndex) {
@@ -35,13 +35,13 @@ public class Sorter {
 
     /**
      * partition()
-     *
+     * <p>
      * Partitions the elements of the list so that all the elements found in the left partition half is less than those
      * found in the right partition half
      *
      * @param pList the list to perform the action on
      * @param start the starting position of the list (initially index of 0, or first element in list)
-     * @param end the starting position of the list (initially index of last element in the list, or list.size() - 1)
+     * @param end   the starting position of the list (initially index of last element in the list, or list.size() - 1)
      * @return the right index of the partitioned list.
      */
     private static int partition(ArrayList<Student> pList, int start, int end) {
@@ -73,13 +73,13 @@ public class Sorter {
 
     /**
      * quickSort()
-     *
+     * <p>
      * Performs a quick sort on an ArrayList of Student objects so the list is arranged alphabetically by the students'
      * last names
      *
      * @param pList the list of students to perform quick sort on
      * @param start the starting index (the element at index 0)
-     * @param end the end index (the element at the end of the list, or list.size() - 1)
+     * @param end   the end index (the element at the end of the list, or list.size() - 1)
      */
     private static void quickSort(ArrayList<Student> pList, int start, int end) {
         if (start >= end) {
@@ -94,7 +94,7 @@ public class Sorter {
 
     /**
      * sort()
-     *
+     * <p>
      * This is the method called to sort a collection of students arranged in an ArrayList alphabetically by last name.
      * Sorting is done in place to the object reference.
      *

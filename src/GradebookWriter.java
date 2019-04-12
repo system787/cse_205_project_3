@@ -31,16 +31,16 @@ public class GradebookWriter extends PrintWriter {
 
     /**
      * Writes the gradebook info to the output file which was opened in the ctor.
-     * 
-     * @param pRoster The roster of students.
      *
-     * PSEUDOCODE:
-     * method writeGradebook(pRoster : Roster() : void
-     *     EnhancedFor each student in pRoster.getStudentList() Do
-     *         Call println(student)
-     *     End For
-     *     Call close()
-     * end writeGradebook
+     * @param pRoster The roster of students.
+     *                <p>
+     *                PSEUDOCODE:
+     *                method writeGradebook(pRoster : Roster() : void
+     *                EnhancedFor each student in pRoster.getStudentList() Do
+     *                Call println(student)
+     *                End For
+     *                Call close()
+     *                end writeGradebook
      */
     public void writeGradebook(Roster pRoster) {
         for (Student s : pRoster.getStudentList()) {
